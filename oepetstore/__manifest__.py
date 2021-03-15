@@ -13,7 +13,9 @@ A wonderful application to sell pet toys.
     'data': [
         "petstore.xml",
         "petstore_data.xml",
-        "oepetstore.message_of_the_day.csv",
+        "oepetstore.message.csv",
+        "ir.model.access.csv"
+        
     ],
     'depends' : ['sale_stock'],
     'qweb': ['static/src/xml/*.xml'],

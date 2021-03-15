@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <templates xml:space="preserve">
+    <t t-name="homepage">
+        <div>
+            <h1>HomePage</h1>
+        </div>
+    </t>
+    <t t-name="formview">
+        <div>
+            <h1>FormView</h1>
+        </div>
+    </t>
+    <t t-name="sigPad">
+       <div>
+        <input type="text" id="value_input" class="form-control" style="max-width: 400px;  width: 150px"/>
+        <input type="button" id="change_opp_name_button" class="your_class" value="Submit"/>
+       </div>
+    </t>
+    
 </templates>
