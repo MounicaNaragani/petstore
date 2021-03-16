@@ -12,10 +12,62 @@
         </div>
     </t>
     <t t-name="sigPad">
-       <div>
-        <input type="text" id="value_input" class="form-control" style="max-width: 400px;  width: 150px"/>
-        <input type="button" id="change_opp_name_button" class="your_class" value="Submit"/>
-       </div>
+        <div class="container">
+
+            <div class="patientDetails">
+                <!-- <img t-att-src="'data:image/png;base64,%s' % to_text(patient.patientImage)" alt="Patient Image" style="width:100;height:100;float:left;display: inline-block;margin-left:5px;margin-top:10px;vertical-align: top;" /> -->
+                <ul>
+                    <li style="font-size:20;font-weight:bold;text-transform:uppercase;">
+                        <t t-esc="patient.name" />
+                    </li>
+                    <li>
+                        DOB:
+                        <t t-esc="patient.birthDate" />
+                    </li>
+                    <li>
+                        Age:
+                        <t t-esc="patient.age" />
+                    </li>
+                    <li>
+                        Sex:
+                        <t t-esc="patient.gender" />
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="leftMenu">
+                <ul>
+                    <li>
+                        <a href="#encounterList">Encounters</a>
+                    </li>
+                    <li>
+                        <a href="#diagnosisList">Diagnosis</a>
+                    </li>
+                    <li>
+                        <a href="#procedureList">Procedures</a>
+                    </li>
+                    <li>
+                        <a href="#outerbox_orders">Orders</a>
+                    </li>
+                    <li>
+                        <a href="#observationList">Observations</a>
+                    </li>
+                    <li>
+                        <a href="#documentList">Documents</a>
+                    </li>
+                    <li>
+                        <a href="#immunizationList">Immunizations</a>
+                    </li>
+                    <li>
+                        <a href="#diagnosticreportList">Diagnostic Reports</a>
+                    </li>
+                    <li>
+                        <a href="#demograpicPage">Demographics</a>
+                    </li>
+                </ul>
+            </div>
+            </div>
     </t>
     
 </templates>

@@ -7,7 +7,14 @@
                 <script type="text/javascript" src="/oepetstore/static/src/js/petstore.js" />
                 <script type="text/javascript" src="/oepetstore/static/src/js/custom_form_view.js" />
                <script type="text/javascript" src="/oepetstore/static/src/js/custom_form_controller.js"/>
-            <!-- <script type="text/javascript" src="/oepetstore/static/src/js/view_registry.js"/> -->
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_form_renderer.js"/>
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_list_controller.js"/>
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_list_view.js"/>
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_abstract_controller.js"/>
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_basic_controller.js"/>
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_list_renderer.js"/>
+               <script type="text/javascript" src="/oepetstore/static/src/js/custom_editable_renderer.js"/>
+                <script type="text/javascript" src="/oepetstore/static/src/js/view_registry.js"/>
                 
                 
             </xpath>
@@ -16,7 +23,7 @@
 
         <record id="action_home_page" model="ir.actions.client">
             <field name="name">Pet Store Home</field>
-            
+            <field name="tag">oepetstore</field>
         </record>
         
         <record id="pet_form_view" model="ir.actions.client">
@@ -30,7 +37,7 @@
         <record model="ir.ui.view" id="message_of_the_day_tree">
             <field name="name">message_of_the_day_tree</field>
             <field name="model">oepetstore.message</field>
-            <field name="type">tree</field>
+            <field name="type">customlist</field>
             <field name="arch" type="xml">
                 <tree string="Message of the day">
                     <field name="message" />
@@ -38,7 +45,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="message_of_the_dayform">
+        <record model="ir.ui.view" id="message_of_the_day_form">
             <field name="name">message_of_the_day_form</field>
             <field name="model">oepetstore.message</field>
             <field name="type">customform</field>            
@@ -46,18 +53,12 @@
                 <form string="Message of the day">
                     <sheet>
                     <group>
-                        <field name="message"  />
+                        <field name="message" />
                         <field name="color"/>
-                        <field name="text"/>
-                        <field name="message"  />
-                        <field name="color"/>
-                        <field name="text"/>
+                        <field name="text"/>                       
                         
                     </group>
-                    <group>
-                        <field name="message" colspan="4" />
-                        <field name="color"/>
-                    </group>
+                    
                     <notebook>
                         <page string="heading1">
 
@@ -85,14 +86,18 @@
         <record id="pet_message_action" model="ir.actions.act_window">
             <field name="name">Message of the day</field>
             <field name="res_model">oepetstore.message</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">customlist,customform</field>
+            <!-- <field name="view_id" ref="message_of_the_dayform"/> -->
+            <field name="view_ids" eval="[(5, 0, 0), 
+                (0, 0, {'view_mode': 'customlist','view_id': ref('message_of_the_day_tree')}), 
+                (0, 0, {'view_mode': 'customform', 'view_id': ref('message_of_the_day_form')})]" />
 
         </record>
 
         <record id="product_normal_form_view_inherit" model="ir.ui.view">
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
-            <field name="type">customform</field>
+            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
                     <field name="max_quantity" />

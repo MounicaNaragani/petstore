@@ -1,22 +1,6 @@
-odoo.define('web.customview_registry', function (require) {
-    "use strict";
-    
-    /**
-     * This module defines the view_registry. Web views are added to the registry
-     * in the 'web._view_registry' module to avoid cyclic dependencies.
-     * Views defined in other addons should be added in this registry as well,
-     * ideally in another module than the one defining the view, in order to
-     * separate the declarative part of a module (the view definition) from its
-     * 'side-effects' part.
-     */
-    console.log("in customview Registry")
-    var Registry = require('web.Registry');
-    
-    return new Registry();
-    
-});
 
-odoo.define('viewRegistry', function (require) {
+
+odoo.define('oepetstore.custom_view_registry', function (require) {
     "use strict";
     
     /**
@@ -25,12 +9,14 @@ odoo.define('viewRegistry', function (require) {
      * would produce cyclic dependencies.
      */
     console.log("in view_registry")
-    var CustomFormView = require('web.CustomFormView');
+    var CustomFormView = require('oepetstore.CustomFormView');
+    var CustomListView = require('oepetstore.CustomListView');
     
-    var view_registry = require('web.customview_registry');
+    var view_registry = require('web.view_registry');
     
     view_registry
-        .add('customform', CustomFormView);
+        .add('customform', CustomFormView)
+        .add('customlist', CustomListView);
     // console.log("at the end of view_registry")    
     
     });

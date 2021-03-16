@@ -1,4 +1,4 @@
-odoo.define('web.CustomFormRenderer', function (require) {
+odoo.define('oepetstore.CustomFormRenderer', function (require) {
     "use strict";
     
     var BasicRenderer = require('web.BasicRenderer');
@@ -14,7 +14,7 @@ odoo.define('web.CustomFormRenderer', function (require) {
     const symbol = Symbol('customform');
     
     var CustomFormRenderer = BasicRenderer.extend({
-        className: "o_form_view",
+        className: "o_custom_form_view",
         events: _.extend({}, BasicRenderer.prototype.events, {
             'click .o_notification_box .oe_field_translate': '_onTranslate',
             'click .o_notification_box .close': '_onTranslateNotificationClose',
@@ -34,6 +34,7 @@ odoo.define('web.CustomFormRenderer', function (require) {
          *   (useful when there are several occurrences of the same field in the arch)
          */
         init: function (parent, state, params) {
+            console.log("in render start function");
             this._super.apply(this, arguments);
             this.fieldIdsToNames = params.fieldIdsToNames;
             this.idsForLabels = {};
@@ -49,6 +50,7 @@ odoo.define('web.CustomFormRenderer', function (require) {
          * @override
          */
         start: function () {
+            console.log("in render start function");
             this._applyFormSizeClass();
             return this._super.apply(this, arguments);
         },
@@ -1070,7 +1072,7 @@ odoo.define('web.CustomFormRenderer', function (require) {
             this.$el.html($newContent);
             this.$el.toggleClass('o_form_nosheet', !this.has_sheet);
             if (this.has_sheet) {
-                this.$el.children().not('.o_CustomFormRenderer_chatterContainer')
+                this.$el.children().not('.o_FormRenderer_chatterContainer')
                     .wrapAll($('<div/>', {class: 'o_form_sheet_bg'}));
             }
             this.$el.toggleClass('o_form_editable', this.mode === 'edit');

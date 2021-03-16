@@ -1,4 +1,4 @@
-odoo.define('web.CustomFormController', function (require) {
+odoo.define('oepetstore.CustomFormController', function (require) {
     "use strict";
     
     var BasicController = require('web.BasicController');
@@ -148,7 +148,7 @@ odoo.define('web.CustomFormController', function (require) {
                 if (mustRenderFooterButtons) {
                     this.$buttons.append($footer);
                 } else {
-                    this.$buttons.append(qweb.render("CustomFormView.buttons", {widget: this}));
+                    this.$buttons.append(qweb.render("FormView.buttons", {widget: this}));
                     this.$buttons.on('click', '.o_form_button_edit', this._onEdit.bind(this));
                     this.$buttons.on('click', '.o_form_button_create', this._onCreate.bind(this));
                     this.$buttons.on('click', '.o_form_button_save', this._onSave.bind(this));
@@ -497,6 +497,7 @@ odoo.define('web.CustomFormController', function (require) {
          * @private
          */
         _onCreate: function () {
+            console.log("in create function");
             this.createRecord();
         },
         /**
@@ -505,6 +506,7 @@ odoo.define('web.CustomFormController', function (require) {
          * @private
          */
         _onDeleteRecord: function () {
+            alert("in delete function");
             this._deleteRecords([this.handle]);
         },
         /**
@@ -514,7 +516,7 @@ odoo.define('web.CustomFormController', function (require) {
          * @private
          */
         _onDiscard: function () {
-            alert("in ondicard function");
+            alert("in discard function")
             this._disableButtons();
             this._discardChanges()
                 .then(this._enableButtons.bind(this))
@@ -580,7 +582,6 @@ odoo.define('web.CustomFormController', function (require) {
          */
         _onFormDialogDiscarded: function(ev) {
             ev.stopPropagation();
-            
             var isFocused = this.renderer.focusLastActivatedWidget();
             if (ev.data.callback) {
                 ev.data.callback(_.str.toBool(isFocused));

@@ -24,6 +24,7 @@ odoo.define('oepetstore', function (require) {
    
     var  MyCustomAction = AbstractAction.extend({
             template: "homepage",
+           
             start: function () {
                     // Actions to do
                     console.log("Action function")

@@ -20,4 +20,11 @@ class product(models.Model):
 class View(models.Model):
     _inherit="ir.ui.view"
 
-    type = fields.Selection(selection_add=[('customform', 'CustomForm')])
+    type = fields.Selection(selection_add=[('customform', 'CustomForm'), ('customlist', 'CustomTree')])
+
+class ActWindowView(models.Model):
+    _inherit = 'ir.actions.act_window.view'
+
+    view_mode = fields.Selection(selection_add=[
+        ('customform', 'CustomForm'), ('customlist', 'CustomTree')
+    ], ondelete={'customform': 'cascade', 'customlist': 'cascade'})
